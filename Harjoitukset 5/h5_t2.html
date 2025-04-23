@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuck Norris</title>
+  <style>
+    body {
+      margin: 50px auto;
+    }
+    button {
+      margin: 20px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chuck Norris</h1>
+  <p>Paina nappia saadaksesi uskomattomia Chuck Norris-faktoja</p>
+  
+  <button onclick="chuckNorris()">Paina</button>
+  <p id="joke"></p>
+
+  <script>
+    async function chuckNorris() {
+      const response = await fetch('https://api.chucknorris.io/jokes/random');
+      const data = await response.json();
+      document.getElementById('joke').innerText = data.value;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lataussimulaattori</title>
+</head>
+<body>
+    <h1>Lataussimulaattori</h1>
+    <div id="loadingDiv">Loading... 0%</div>
+
+<script>
+    
+function lataus() {
+    let progress = 0;
+    const loadingDiv = document.getElementById("loadingDiv");
+
+    const intervalId = setInterval(function () {
+        if (progress < 100) {
+            progress++;
+            loadingDiv.textContent = `Loading... ${progress}%`;
+        } else {
+            clearInterval(intervalId);
+            loadingDiv.textContent = "Loading finished!";
+        }
+    }, 1000);
+}
+
+lataus();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="f">
+        <input type=text id="n1"><br>
+        <input type=text id="n2"><br>
+        <button type="button" onclick="tulostaSumma(f.n1.value, f.n2.value)">Calculate Sum</button>
+
+        <div id="results"></div>
+
+        <script>
+            function laskeSumma(a, b) {
+                let s = parseInt(a) + parseInt(b);
+                return s;
+            }
+
+        function tulostaSumma(a, b) {
+            let summa = laskeSumma(a, b)
+            var div = document.getElementById("results"); 
+            div.innerHTML = "Sum is " + summa + ".";
+        }
+
+        </script>
+     </form>
+</body>
+</html>

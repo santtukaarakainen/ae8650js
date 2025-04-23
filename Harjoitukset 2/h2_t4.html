@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="f">
+        <input type=number id="number"><br>
+        <button type="button" onclick="arvaaLuku()">Arvaa</button>
+    </form>
+
+    <div id="results"></div>
+
+        <script>
+
+            let oikea_luku = Math.floor(Math.random() * 100 + 1);
+            console.log(oikea_luku);
+            let luvut = 0;
+
+            let form = document.getElementById("form");
+            form.addEventListener("keydown", function(event) {
+                if (event.code == "Enter") {
+                    event.preventDefault();
+                    arvaaLuku();
+                }
+            }
+
+            );
+
+        function arvaaLuku() {
+            let luku = parseInt(document.getElementById("number").value);
+            luvut++;
+            if (luku < oikea_luku) {
+                document.getElementById("results").innerHTML = "Luku on suurempi!";
+            }
+            else if (luku > oikea_luku) {
+                document.getElementById("results").innerHTML = "Luku on pienempi!";
+            }
+            else {
+                document.getElementById("results").innerHTML = "Oikein meni! Arvauksia: " + luvut;
+            }
+        }
+
+        </script>
+
+</body>
+</html>

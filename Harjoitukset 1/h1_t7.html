@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function onKarkausvuosi(vuosi) {
+            return (vuosi % 4 === 0 && vuosi % 100 !== 0) || (vuosi % 400 === 0);
+        }
+
+        function tarkistaVuodet() {
+            let vuodet = [1991, 1992, 1900, 2000];
+            vuodet.forEach(vuosi => {
+                if (onKarkausvuosi(vuosi)) {
+                    console.log(`${vuosi} -> on karkausvuosi`);
+                } else {
+                    console.log(`${vuosi} -> ei ole karkausvuosi`);
+                }
+            });
+        }
+        tarkistaVuodet();
+    </script>
+</head>
+</html>

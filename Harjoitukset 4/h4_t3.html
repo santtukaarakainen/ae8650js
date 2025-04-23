@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista</title>
+</head>
+<body>
+    <input type="text" id="newItem" placeholder="Mitä haluat lisätä?">
+    <button onclick="lisaaListaan()">Lisää</button>
+    <button onclick="listanTyhjennys()">Tyhjää lista</button>
+
+    <ul id="demolist">
+        <li>Eka</li>
+        <li>Toka</li>
+    </ul>
+
+    <script>
+        function lisaaListaan() {
+            let ulnode = document.getElementById("demolist");
+            let newItem = document.getElementById("newItem").value;
+
+            if (newItem.trim() !== "") {
+                let linode = document.createElement('li');
+                linode.textContent = newItem; 
+                ulnode.appendChild(linode); 
+                document.getElementById("newItem").value = ""; 
+            } else {
+                alert("Syötä jokin teksti lisättäväksi!");
+            }
+        }
+
+        function listanTyhjennys() {
+            let ulnode = document.getElementById("demolist");
+            ulnode.innerHTML = ''; 
+        }
+
+        const listItems = document.querySelectorAll('#demolist li');
+
+        listItems.forEach(item => {
+        item.addEventListener('click', function() {
+            this.remove();
+        });
+        });
+    </script>
+</body>
+</html>

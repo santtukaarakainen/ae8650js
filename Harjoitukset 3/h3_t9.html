@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HissiSimu 2025</title>
+<style>
+  .hissi-ruutu {
+    border: 1px solid black;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+  }
+  #naytto {
+    background-color: lightgray;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  .nappain-rivi {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2px;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="hissi-ruutu">
+  <div id="naytto">
+    <div>Kerros: <span id="nykyinen-kerros">1</span></div>
+    <div>Tavoite: <span id="tavoite-kerros"></span></div>
+  </div>
+  <div class="nappain-rivi">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+  </div>
+  <div class="nappain-rivi">
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+  </div>
+  <div class="nappain-rivi">
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+  </div>
+  <div class="nappain-rivi">
+    <button>C</button>
+    <button>0</button>
+    <button id="go-nappain">GO</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const nykyinenKerrosNaytto = document.getElementById('nykyinen-kerros');
+  const tavoiteKerrosNaytto = document.getElementById('tavoite-kerros');
+  const nappaimet = document.querySelectorAll('.nappain-rivi button');
+  const goNappain = document.getElementById('go-nappain');
+  let nykyinenKerros = 1;
+  let valittuKerros = '';
+
+  paivitaNaytto();
+
+  nappaimet.forEach(nappain => {
+    nappain.addEventListener('click', () => {
+      const arvo = nappain.textContent;
+      if (!isNaN(arvo) && valittuKerros.length < 3) {
+        valittuKerros += arvo;
+        tavoiteKerrosNaytto.textContent = valittuKerros;
+      } else if (arvo === 'C') {
+        tyhjennaValittuKerros();
+      }
+    });
+  });
+
+  goNappain.addEventListener('click', () => {
+    if (valittuKerros && parseInt(valittuKerros) >= 1 && parseInt(valittuKerros) <= 100) {
+      siirryKerrokseen(parseInt(valittuKerros));
+      tyhjennaValittuKerros();
+    } else if (valittuKerros) {
+      naytaViesti("Virhe!");
+      tyhjennaValittuKerros();
+    }
+  });
+
+  function paivitaNaytto() {
+    nykyinenKerrosNaytto.textContent = nykyinenKerros;
+  }
+
+  function tyhjennaValittuKerros() {
+    valittuKerros = '';
+    tavoiteKerrosNaytto.textContent = '';
+  }
+
+  function siirryKerrokseen(kohdeKerros) {
+    if (kohdeKerros === nykyinenKerros) {
+      naytaViesti(`Olet jo kerroksessa ${nykyinenKerros}.`);
+      return;
+    }
+
+    let suunta = kohdeKerros > nykyinenKerros ? 1 : -1;
+    let valiaika = 500;
+    let i = nykyinenKerros;
+
+    const intervalli = setInterval(() => {
+      i += suunta;
+      nykyinenKerrosNaytto.textContent = i;
+      tavoiteKerrosNaytto.textContent = kohdeKerros;
+
+      if (i === kohdeKerros) {
+        clearInterval(intervalli);
+        nykyinenKerros = kohdeKerros;
+        paivitaNaytto();
+        naytaViesti(`Hissi on nyt kerroksessa: ${nykyinenKerros}`);
+        tavoiteKerrosNaytto.textContent = '';
+      }
+    }, valiaika);
+  }
+
+  function naytaViesti(viesti) {
+    const viestiElementti = document.createElement('div');
+    viestiElementti.textContent = viesti;
+    viestiElementti.style.marginTop = '5px';
+    document.querySelector('.hissi-ruutu').appendChild(viestiElementti);
+    setTimeout(() => {
+      viestiElementti.remove();
+    }, 2000);
+  }
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    function Person(name, age, phone, email) {
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    Person.prototype.addAge = function() {
+        this.age += 1;
+        console.log(this.name + ' Uusi ikä: ' + this.age);
+    };
+
+    var henkilö1 = new Person('Matti Meikäläinen', 30, '0401234567', 'matti.meikalainen@gmail.com');
+    var henkilö2 = new Person('Ken Guru', 18, '0509876543', 'kenguru@student.jamk.fi');
+    var henkilö3 = new Person('Kalle Koodari', 42, '0441122334', 'kalle.koodari@hotmail.com');
+
+    console.log("--- Alkuperäiset henkilötiedot ---");
+    console.log(henkilö1);
+    console.log(henkilö2);
+    console.log(henkilö3);
+
+    console.log("\n--- Käytetään addAge()-metodia ---");
+    henkilö1.addAge();
+    henkilö2.addAge();
+    henkilö2.addAge();
+    henkilö3.addAge();
+
+    console.log("\n--- Päivitetyt henkilötiedot ---");
+    console.log(henkilö1);
+    console.log(henkilö2);
+    console.log(henkilö3);
+
+</script>
+
+</body>
+</html>

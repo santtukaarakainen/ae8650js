@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALV-laskuri</title>
+</head>
+<body>
+    <h1>Arvonlisäveron laskuri</h1>
+    <label for="hinta">Syötä ALViton hinta:</label>
+    <input type="number" id="hinta" step="0.01">
+    
+    <div>
+        <button id="yleinenALV">Yleinen ALV (25.5%)</button>
+        <button id="elintarvikeALV">Ruoka ALV (14%)</button>
+        <button id="laakeALV">Lääke ALV (10%)</button>
+    </div>
+
+    <p id="tulos"></p>
+
+<script>
+function laskeALV(hinta, alvKanta = 25.5) {
+    let alv = hinta * (alvKanta / 100);
+    let kokonaishinta = hinta + alv;
+    const tulosElementti = document.getElementById("tulos");
+    tulosElementti.textContent = `ALV (${alvKanta}%): ALVin määrä: ${alv} €, Kokonaishinta: ${kokonaishinta} €`;
+}
+
+document.getElementById("yleinenALV").addEventListener("click", function () {
+    const hinta = parseFloat(document.getElementById("hinta").value);
+    laskeALV(hinta);
+});
+
+document.getElementById("elintarvikeALV").addEventListener("click", function () {
+    const hinta = parseFloat(document.getElementById("hinta").value);
+    laskeALV(hinta, 14);
+});
+
+
+document.getElementById("laakeALV").addEventListener("click", function () {
+    const hinta = parseFloat(document.getElementById("hinta").value);
+    laskeALV(hinta, 10);
+});
+    
+</script>
+
+</body>
+</html>

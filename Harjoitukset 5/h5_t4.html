@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Fake Store Products</h1>
+  <div class="filter">
+    <label for="category">Select category: </label>
+    <select id="category" onchange="fetchProducts()">
+      <option value="all">All</option>
+      <option value="men's clothing">men's clothing</option>
+      <option value="women's clothing">women's clothing</option>
+      <option value="jewelery">jewelery</option>
+      <option value="electronics">electronics</option>
+    </select>
+  </div>
+
+  <div class="products" id="productList"></div>
+
+  <script src="t4.js"></script>
+</body>
+</html>

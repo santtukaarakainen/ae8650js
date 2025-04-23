@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuplapotti</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+    <h1>Hedelmäpeli</h1>
+
+    <div class="reels">
+        <img src="images/fruit1.jpg" id="fruit1" alt="Hedelmä 1" width="100" height="100">
+        <img src="images/fruit2.jpg" id="fruit2" alt="Hedelmä 2" width="100" height="100">
+        <img src="images/fruit3.jpg" id="fruit3" alt="Hedelmä 3" width="100" height="100">
+    </div>
+
+    <div class="controls">
+        <button id="spinButton">Spin (1€)</button>
+    </div>
+
+    <div class="info">
+        <p>Saldo: <span id="balance">100</span> €</p>
+        <p id="message">Paina Spin aloittaaksesi!</p>
+    </div>
+
+    <script>
+
+        const fruitImages = ['images/fruit1.jpg', 'images/fruit2.jpg', 'images/fruit3.jpg']; // Lisää tarvittaessa lisää kuvia polkuineen
+        const spinCost = 1;
+        const winTwoMatch = 2;
+        const winThreeMatch = 10;
+        let currentBalance = 100;
+
+        const fruit1Element = document.getElementById('fruit1');
+        const fruit2Element = document.getElementById('fruit2');
+        const fruit3Element = document.getElementById('fruit3');
+        const spinButton = document.getElementById('spinButton');
+        const balanceElement = document.getElementById('balance');
+        const messageElement = document.getElementById('message');
+
+
+        function updateDisplay(message = "") {
+            balanceElement.textContent = currentBalance;
+            messageElement.textContent = message;
+
+            if (currentBalance < spinCost) {
+                messageElement.textContent = "Sorry you don't have any euros left!";
+                spinButton.disabled = true;
+            } else {
+                spinButton.disabled = false; 
+            }
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function spinReels() {
+            if (currentBalance < spinCost) {
+                updateDisplay("Sorry you don't have any euros left!");
+                return;
+            }
+
+            currentBalance -= spinCost;
+            let message = "";
+
+            const reel1Index = getRandomInt(fruitImages.length);
+            const reel2Index = getRandomInt(fruitImages.length);
+            const reel3Index = getRandomInt(fruitImages.length);
+
+            const result1 = fruitImages[reel1Index];
+            const result2 = fruitImages[reel2Index];
+            const result3 = fruitImages[reel3Index];
+
+            
+            fruit1Element.src = result1;
+            fruit2Element.src = result2;
+            fruit3Element.src = result3;
+
+            
+            if (result1 === result2 && result2 === result3) {
+                
+                currentBalance += winThreeMatch;
+                message = `BIG WIN!! - You won ${winThreeMatch} euros!`;
+            } else if (result1 === result2 || result2 === result3 || result1 === result3) {
+                
+                currentBalance += winTwoMatch;
+                message = `WOHOO - You won ${winTwoMatch} euros!`;
+            } else {
+             
+                message = "Sorry - No win!";
+            }
+
+            updateDisplay(message);
+        }
+
+        spinButton.addEventListener('click', spinReels);
+
+        updateDisplay("Paina Spin aloittaaksesi!");
+
+    </script>
+    </body>
+</html>

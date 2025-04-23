@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lady Gaga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #concert {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            let concertDiv = document.getElementById("concert");
+            let fireworksCount = 5;
+            
+            let firstText = document.createElement("p");
+            firstText.textContent = "OMG - Lady Gaga start singing!";
+            concertDiv.appendChild(firstText);
+            
+            let counter = 0;
+            let interval = setInterval(() => {
+                if (counter < fireworksCount) {
+                    let niceText = document.createElement("p");
+                    niceText.textContent = "NICE - fireworks!";
+                    concertDiv.appendChild(niceText);
+                    counter++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        let wowText = document.createElement("p");
+                        wowText.textContent = "WOW - It was the best concert in my life...";
+                        concertDiv.appendChild(wowText);
+                    }, 3000);
+                }
+            }, 5000);
+        };
+    </script>
+</head>
+<body>
+    <h1>Lady Gaga Concert</h1>
+    <div id="concert"></div>
+</body>
+</html>

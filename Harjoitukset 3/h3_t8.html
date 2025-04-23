@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nopeusmittari</title>
+</head>
+<body>
+
+<h1>Nopeusmittari</h1>
+
+<div>
+  <label for="tunnit">Tunnit:</label>
+  <input type="number" id="tunnit" value="0"><br><br>
+
+  <label for="minuutit">Minuutit:</label>
+  <input type="number" id="minuutit" value="0"><br><br>
+
+  <label for="sekunnit">Sekunnit:</label>
+  <input type="number" id="sekunnit" value="0"><br><br>
+
+  <label for="kilometrit">Kilometrit:</label>
+  <input type="number" id="kilometrit" value="0"><br><br>
+
+  <button onclick="laskeNopeus()">Laske nopeus</button><br><br>
+
+  <label for="nopeus">Nopeus (km/h):</label>
+  <input type="text" id="nopeus" readonly>
+</div>
+
+<script>
+function laskeNopeus() {
+  const tunnit = parseInt(document.getElementById("tunnit").value);
+  const minuutit = parseInt(document.getElementById("minuutit").value);
+  const sekunnit = parseInt(document.getElementById("sekunnit").value);
+  const kilometrit = parseFloat(document.getElementById("kilometrit").value);
+
+  const kokonaisAikaSekunteina = tunnit * 3600 + minuutit * 60 + sekunnit;
+  const kokonaisAikaTunneissa = kokonaisAikaSekunteina / 3600;
+
+  if (kokonaisAikaTunneissa > 0) {
+    const nopeus = kilometrit / kokonaisAikaTunneissa;
+    document.getElementById("nopeus").value = nopeus.toFixed(2);
+  } else {
+    document.getElementById("nopeus").value = "0.00";
+  }
+}
+</script>
+
+</body>
+</html>

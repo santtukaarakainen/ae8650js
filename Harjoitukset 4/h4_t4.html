@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Värijuhlat</title>
+<style>
+  #tulosalue {
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+
+  <div>
+    <label for="variValikko">Valitse juhlaväri:</label>
+    <select id="variValikko">
+      <option value="#ffffff">Valkoinen</option>
+      <option value="#ffff00" selected>Keltainen</option>
+      <option value="#00ff00">Vihreä</option>
+      <option value="#0000ff">Sininen</option>
+      <option value="#ff0000">Punainen</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="tekstiKentta">Mikä juhla?</label>
+    <input type="text" id="tekstiKentta">
+  </div>
+
+  <button id="vaihdaVari">Vaihda valittu taustaväri</button>
+
+  <div id="tulosalue">
+    Tulosalue
+    <div id="valittuVariTeksti">Valittu: #ff0</div>
+    <div id="kirjoitettuTeksti">Pääsiäinen</div>
+  </div>
+
+  <script>
+    const variValikko = document.getElementById('variValikko');
+    const tekstiKentta = document.getElementById('tekstiKentta');
+    const vaihdaVariPainike = document.getElementById('vaihdaVari');
+    const tulosalue = document.getElementById('tulosalue');
+    const valittuVariTeksti = document.getElementById('valittuVariTeksti');
+    const kirjoitettuTeksti = document.getElementById('kirjoitettuTeksti');
+
+    variValikko.addEventListener('change', function() {
+      const valittuVari = this.value;
+      valittuVariTeksti.textContent = `Valittu: ${valittuVari}`;
+    });
+
+    tekstiKentta.addEventListener('input', function() {
+      const syotettyTeksti = this.value;
+      if (!/\d/.test(syotettyTeksti)) {
+        kirjoitettuTeksti.textContent = syotettyTeksti;
+      } else {
+        console.log("Teksti ei saa sisältää numeroita.");
+      }
+    });
+
+    vaihdaVariPainike.addEventListener('click', function() {
+      const valittuVari = variValikko.value;
+      tulosalue.style.backgroundColor = valittuVari;
+      valittuVariTeksti.textContent = `Valittu: ${valittuVari}`;
+    });
+
+    tulosalue.style.backgroundColor = variValikko.value;
+    valittuVariTeksti.textContent = `Valittu: ${variValikko.value}`;
+    kirjoitettuTeksti.textContent = tekstiKentta.value;
+  </script>
+
+</body>
+</html>

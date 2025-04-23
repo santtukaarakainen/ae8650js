@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function onPalindromi(merkkijono) {
+            let puhdistettu = merkkijono.toLowerCase().replace(/\s+/g, "");
+            let kaannetty = puhdistettu.split("").reverse().join("");
+            return puhdistettu === kaannetty;
+        }
+
+        function tarkistaMerkkijonot() {
+            let merkkijonot = [
+                "Race car", 
+                "Was it a car or a cat I saw", 
+                "How about this one"
+            ];
+            
+            merkkijonot.forEach(mj => {
+                if (onPalindromi(mj)) {
+                    console.log(`${mj} -> palindromi`);
+                } else {
+                    console.log(`${mj} -> ei palindromi`);
+                }
+            });
+        }
+        tarkistaMerkkijonot()
+    </script>
+</head>
+</html>

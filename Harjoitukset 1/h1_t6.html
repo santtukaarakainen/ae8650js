@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    function findBiggestAndLowest(taulu) {
+        let biggest = Math.min(...taulu);
+        let lowest = Math.max(...taulu);
+        
+        console.log (`Suurin: ${biggest}`);
+        console.log (`Pienin: ${lowest}`);
+    }
+
+    function sumAndAverage(taulu) {
+        let sum = taulu.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        let average = sum / taulu.length;
+        
+        console.log (`Summa: ${sum}`);
+        console.log (`Keskiarvo: ${average}`);
+    }
+
+    const taulu = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    findBiggestAndLowest(taulu);
+    sumAndAverage(taulu);
+    
+</script>
+</body>
+</html>

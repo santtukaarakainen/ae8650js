@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tulosta tasoitukset</title>
+
+<script>
+var hcpdata = [{ "name": "Ari", "hcp": 54 },
+               { "name": "Pasi", "hcp": 5 },
+               { "name": "Seppo", "hcp": 20 }];
+</script>
+
+</head>
+<body>
+    <button onclick="tasoitusTulostus()">Tulosta tasoitukset</button>
+    <ul id="hcplist"></ul>
+
+    <script>
+        function tasoitusTulostus() {
+            if (document.getElementById("hcplist").children.length > 0) {
+                return;
+            }
+            for (var i = 0; i < hcpdata.length; i++) {
+                var li = document.createElement("li"); 
+                li.textContent = hcpdata[i].name + " " + hcpdata[i].hcp;
+                document.getElementById("hcplist").appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>

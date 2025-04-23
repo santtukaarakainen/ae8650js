@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    circle = {
+    radius: 5,
+    pi: 3.14,
+    color: "red",
+    getArea: function() {
+        const area = this.pi * (this.radius ** 2);
+        return area;
+    },
+
+    getCircumference: function() {
+        const circumference = 2 * this.pi * this.radius;
+        return circumference;
+    }
+    }
+
+    const area = circle.getArea()
+    const circumference = circle.getCircumference()
+
+
+    console.log(`Circle radius is ${circle.radius} and its' color is ${circle.color}.`);
+    console.log(`Area: ${area} and Circumference: ${circumference}.`);
+
+    </script>
+</body>
+</html>

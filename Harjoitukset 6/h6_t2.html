@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="h6_t2.css" />
+    <title>Kartta</title> 
+</head>
+
+<body onload="init()">
+    <div id="map"></div>
+<div id="info">
+<h3>Add a new favourite place</h3>
+<table>
+<tr>
+    <td>Name: </td>
+    <td><input type="text" id="name" value="London"></td>
+</tr>
+<tr>
+    <td>Latitude: </td>
+    <td><input type="text" id="latitude" value="51.507351"></td>
+</tr>
+<tr>
+    <td>Longitude: </td>
+    <td><input type="text" id="longitude" value="-0.127758"></td>
+</tr>
+</table>
+<button type="button" onclick="addButtonPressed()" id="add">Add</button>
+
+</div>
+    <script src="h6_t2.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Vuosi</title>
+ </head>
+
+ <body>
+  <h1>Vuosi</h1>
+
+ <form id="f">
+  Name<br>
+  <input type="text" id="nimi"><br>
+  Age<br>
+  <input type="text" id="ika"><br><br>
+  <button type="button" onclick="tulostanimi(f.nimi.value, f.ika.value)">
+  Show
+  </button>
+ </form>
+
+ <div id="results"></div>
+
+  <script>   
+
+  function tulostanimi(nimi, ika) {
+    let today = new Date();
+    let birthDate = new Date(ika);
+    let ika_vuodet = today.getFullYear() - birthDate.getFullYear();
+   var div = document.getElementById("results"); 
+   div.innerHTML = "<h3>" + "Hi " + nimi + "!" + "</h3>" + "It has been a pleasure working with you " + nimi + ". Nice to see you are only " + ika_vuodet + " years old.";
+  } 
+
+  </script>
+
+ </body>
+</html>

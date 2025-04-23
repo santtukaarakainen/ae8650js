@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    let points = [];
+    let point;
+
+    function askPoints() {
+            return prompt("Anna tyylipisteet: ");
+        }
+
+        do {
+            point = askPoints();
+            if(points.length < 5) points.push(point);
+        } while (points.length < 5);
+
+    function findBiggestAndLowest(points) {
+        let biggest = Math.min(...points);
+        let lowest = Math.max(...points);
+        
+        console.log (`Suurin: ${biggest}`);
+        console.log (`Pienin: ${lowest}`);2
+
+        points.sort()
+        points.pop(biggest, lowest)
+        let sum = points.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        let average = sum / points.length;
+        
+        console.log (`Summa: ${sum}`);
+        console.log (`Keskiarvo: ${average}`);
+    }
+
+    findBiggestAndLowest(points);13
+    
+</script>
+</body>
+</html>
